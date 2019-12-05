@@ -21,8 +21,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
-
+import {loginget} from '@/service/loginget.js'
 export default {
     props:{
 
@@ -44,6 +43,7 @@ export default {
     },
     methods:{
         onSubmit() {
+            // console.log(requests.post('/login'),'requests')
             let nameFalg=this.formLabelAlign.name.length===0;
             let phoneFalg=this.formLabelAlign.phone.length===0;
             if (nameFalg||phoneFalg) {
@@ -53,15 +53,16 @@ export default {
                     this.$message('手机输入格式不正确');
                 }else{
                     console.log('user',this.formLabelAlign.name,'phone',this.formLabelAlign.phone)
-                    axios.post('http://127.0.0.1:7001/login',{
+                    
+                    loginget('/login',{
                         user:this.formLabelAlign.name,
                         phone:this.formLabelAlign.phone
-                    }).then(({data})=>{
+                    }).then((data)=>{
                         console.log(data,'data')
-                        if (data.code==1) {
-                            this.$router.push('/home')
-                        }
+                    }).catch((res)=>{
+                        console.log(res,'res')
                     })
+
                 }
             }
         }
@@ -79,8 +80,9 @@ export default {
     width: 100%;
     height: 100%;
     /* background: url(https://img.kaikeba.com/11656150219102qcla.jpg) no-repeat; */
-    background: url(https://img.kaikeba.com/24856150219102jkiy.jpg) no-repeat center;
-    /* background-size: 100% 100%; */
+    /* background: url(https://img.kaikeba.com/24856150219102jkiy.jpg) no-repeat center; */
+    background: url(https://img.kaikeba.com/72809150219102rmia.jpg) no-repeat center;
+    background-size: 100% 100%;
     position: relative;
 }
 .login_form{
@@ -88,8 +90,8 @@ export default {
     height: 6rem;
     background-image: linear-gradient(top right,#88888f,#110f0f);
     position: absolute;
-    top: 19%;
-    left: 30%;
+    bottom: 25%;
+    left: 25%;
     flex-direction: column;
     display: flex;
     justify-content: space-around;
