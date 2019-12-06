@@ -10,6 +10,12 @@ class UserService extends Service {
   async registerFn(user,phone) {//注册时 往数据裤里增加 此用户信息
     return await  this.app.mysql.query(`insert into login (user,phone) values ('${user}',${phone})`);
   }
+  async adminUser(token){//根据登录用户的 token 判断用户的权限
+    return await this.app.mysql.query(`select * from login where token='${token}'`)
+  }
+  async shopginFn(){
+    return await this.app.mysql.query(`select * from shop`);
+  }
 }
 
 module.exports = UserService;

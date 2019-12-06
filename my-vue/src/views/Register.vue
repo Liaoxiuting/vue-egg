@@ -23,6 +23,7 @@
 </template>
 <script>
 import axios from 'axios'
+import {registerget} from '@/service/loginget.js'
 export default {
     props:{
 
@@ -52,15 +53,19 @@ export default {
                 if (!/^1(3|5|7|8)\d{9}$/.test(this.formLabelAlign.phone)) {
                     this.$message('手机输入格式不正确');
                 }else{
-                    console.log('user',this.formLabelAlign.name,'phone',this.formLabelAlign.phone)
-                    axios.post('http://127.0.0.1:7001/register',{
+                    registerget('/register',{
                         user:this.formLabelAlign.name,
                         phone:this.formLabelAlign.phone
-                    }).then(({data})=>{
-                        console.log(data,'res')
-                        if (data.code==1) {
+                    }).then((data)=>{
+                        console.log(data,'data')
+                        if (data.code===1) {
+                            this.$message('注册成功');
                             this.$router.push('/login')
+                        }else{
+                            this.$message('注册失败，请重新注册');
                         }
+                    }).catch((res)=>{
+                        console.log(res,'res')
                     })
                 }
             }

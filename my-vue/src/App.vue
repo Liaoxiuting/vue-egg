@@ -6,11 +6,15 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return{
+    }
+  }
 }
 </script>
 
-<style>
+<style lang=''>
 *{
   margin: 0;padding: 0;
 }
@@ -23,6 +27,5 @@ html,body{
   height: 100%;
   background: url(https://img.kaikeba.com/72809150219102rmia.jpg) center;
   background-size: 100% 100%;
-  /* background-image: linear-gradient(top right,rgb(52, 189, 52),#e2df30); */
 }
 </style>
