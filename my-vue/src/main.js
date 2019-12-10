@@ -8,7 +8,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Scroll from './components/scroll'
 // rem自适应
 import 'lib-flexible/flexible.js'
-
 Vue.config.productionTip = false
 // rem自适应
 import remAndphoneConfig from './configs/remComfig.js'

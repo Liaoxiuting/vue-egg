@@ -13,12 +13,18 @@ class HomeController extends Controller {
     const { ctx } = this;
     let { user, phone } = ctx.request.body;
     let str = await ctx.service.user.loginFn(user, phone);
-    console.log(str,'====str==')
-    if (str.length == 0) {
-      let token = tokenFn(str[0].id);
-      let strtoken = await ctx.service.user.addtoken(token, phone);
+    console.log(str.length,'====str==')
+    if (str.length != 0) {
+      ctx.body = {
+        code: 0,
+        msg: "已被注册过"
+      };
+    } else {
+      let token = tokenFn(phone);
       let strs = await ctx.service.user.registerFn(user, phone);
+      console.log(strs,'---strs')
       if (strs.affectedRows == 1) {
+        await ctx.service.user.addtoken(token, phone);
         ctx.body = {
           code: 1,
           msg: "注册成功"
@@ -29,11 +35,6 @@ class HomeController extends Controller {
           msg: "请重新注册"
         };
       }
-    } else {
-      ctx.body = {
-        code: 0,
-        msg: "已被注册过"
-      };
     }
 }
   // 登录
@@ -128,6 +129,7 @@ class HomeController extends Controller {
       };
     }
   }
+  //商品数据
   async shopgin(){
     let { ctx } =this;
     let data=await ctx.service.user.shopginFn();

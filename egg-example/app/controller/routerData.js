@@ -3,11 +3,11 @@ const routers = [
     admin: [
       {
         id: "1",
-        name: "员工管理",
+        name: "商品中心",
         children:[
             {
                 id: "1a",
-                name: "@用户管理@",
+                name: "购顺畅",
                 url: "/home/useradmi",
             }
         ]

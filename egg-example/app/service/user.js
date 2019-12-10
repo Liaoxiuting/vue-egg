@@ -7,8 +7,8 @@ class UserService extends Service {
   async addtoken(token,phone){//更改token值
     return await this.app.mysql.query(`update login set token='${token}' where phone=${phone}`);
   }
-  async registerFn(user,phone) {//注册时 往数据裤里增加 此用户信息
-    return await  this.app.mysql.query(`insert into login (user,phone) values ('${user}',${phone})`);
+  async registerFn(user,phone,role='user') {//注册时 往数据裤里增加 此用户信息
+    return await  this.app.mysql.query(`insert into login (user,phone,role) values ('${user}',${phone},${role})`);
   }
   async adminUser(token){//根据登录用户的 token 判断用户的权限
     return await this.app.mysql.query(`select * from login where token='${token}'`)

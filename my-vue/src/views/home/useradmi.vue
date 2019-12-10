@@ -1,11 +1,22 @@
 <template>
   <div class="useradmi">
     <div class="box" v-for="itm in data" :key="itm.id">
+        <img :src="itm.imgs" alt="">
         <h3>
             {{itm.titles}}
         </h3>
-      <p>{{ itm.texts}}</p>
-      <img :src="itm.imgs" alt="">
+        <h4>
+          <span>
+            -
+          </span>
+          <b>
+            {{itm.conts}}
+          </b>
+          <span>
+            +
+          </span>
+        </h4>
+        <p>{{ itm.texts}}</p>
     </div>
   </div>
 </template>
@@ -36,16 +47,37 @@ export default {
 .useradmi {
   width: 100%;
   height: 100%;
+  margin: 0;padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 .box{
-    width: 100%;
-    height: 5rem;
+    width: 6rem;
+    height: auto;
+    flex-direction: column;
     display: flex;
-    justify-content: space-around;
     align-items: center;
 }
 .box > img{
     width: 4rem;
-    height: 5rem;
+}
+.box > h3{
+    width:100%;
+    height: 1rem;
+    line-height: 1rem;
+}
+.box>h4{
+    width:4rem;
+    height: 1rem;
+    line-height: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box > p{
+    width:100%;
+    height: 1rem;
+    line-height: 1rem;
 }
 </style>

@@ -41,6 +41,7 @@
 </template>
 <script>
 import { homeget} from "@/service/loginget.js";
+// import {mapState} from 'vuex'
 export default {
   props: {},
   components: {},
@@ -50,7 +51,11 @@ export default {
       img: ""
     };
   },
-  computed: {},
+  computed: {
+    // ...mapState({
+    //   datas:state=>login.state.data
+    // })
+  },
   methods: {
     clickFn(url) {
       this.$router.push(url);
@@ -66,6 +71,7 @@ export default {
     }
   },
   created() {
+    console.log(this.datas,'datas')
     if (localStorage.getItem("swjtoken")) {
       homeget("/home", localStorage.getItem("swjtoken"))
         .then(data => {
@@ -122,11 +128,9 @@ export default {
 .el-main {
   width: 100%;
   height: 100%;
-  background-color: #e9eef3;
   background-image: linear-gradient(left top, rgb(238, 240, 212), #d8340b);
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 
 /* body > .el-container {
