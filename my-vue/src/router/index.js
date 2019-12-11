@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { setToken ,getToken,removeToken } from '@/utils/tokencookie.js';
 
 //楼层 
 // import Loucheng from '@/components/loucheng'
@@ -19,70 +20,68 @@ import Isauseradmi from '@/views/home/isauseradmi.vue'
 import Isabulletin from '@/views/home/isabulletin.vue'
 
 Vue.use(Router)
-
-export default new Router({
-  routes: [
-    // {//楼层 
-    //   path: '/',
-    //   name: 'Loucheng',
-    //   component: Loucheng
-    // }
-    {
-      path:'/home',
-      name:'Home',
-      component:Home,
-      children:[
-        {
-          path:"/home/useradmi",
-          name:'useradmi',
-          component:Useradmi
-        },
-        {
-          path:"/home/bulletin",
-          name:'bulletin',
-          component:Bulletin
-        },
-        {
-          path:"/home/notice",
-          name:'notice',
-          component:Notice
-        },
-        {
-          path:"/home/role",
-          name:'role',
-          component:Role
-        },
-        {
-          path:"/home/isauseradmi",
-          name:'isauseradmi',
-          component:Isauseradmi
-        },
-        {
-          path:"/home/isabulletin",
-          name:'isabulletin',
-          component:Isabulletin
-        }
-      ]
-    },
-    {
-      path:'/login',
-      name:'Login',
-      component:Login
-    },{
-      path:'/register',
-      name:'register',
-      component:Register
-    },{
-      path:'/',
-      redirect:"/home"
-    }
-    // beforeEach(to,from,next){
-    //   if(to.path == '/login' || to.path == '/register'){
-    //     next();
-    //   }else{
-    //     alert('您还没有登录，请先登录');
-    //     next('/login');
-    //   }
-    // })
-  ]
-})
+const routes=[
+  // {//楼层 
+  //   path: '/',
+  //   name: 'Loucheng',
+  //   component: Loucheng
+  // }
+  {
+    path:'/home',
+    name:'Home',
+    component:Home,
+    children:[
+      {
+        path:"/home",
+        redirect:'/home/useradmi'
+      },
+      {
+        path:"/home/useradmi",
+        name:'useradmi',
+        component:Useradmi
+      },
+      {
+        path:"/home/bulletin",
+        name:'bulletin',
+        component:Bulletin
+      },
+      {
+        path:"/home/notice",
+        name:'notice',
+        component:Notice
+      },
+      {
+        path:"/home/role",
+        name:'role',
+        component:Role
+      },
+      {
+        path:"/home/isauseradmi",
+        name:'isauseradmi',
+        component:Isauseradmi
+      },
+      {
+        path:"/home/isabulletin",
+        name:'isabulletin',
+        component:Isabulletin
+      }
+    ]
+  },
+  {
+    path:'/login',
+    name:'Login',
+    component:Login
+  },{
+    path:'/register',
+    name:'register',
+    component:Register
+  },{
+    path:'/',
+    redirect:"/home"
+  }
+]
+ 
+const router = new Router({
+  routes
+});
+ export default router;

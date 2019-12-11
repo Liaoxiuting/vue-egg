@@ -17,6 +17,7 @@
 </template>
 <script>
 import { loginget } from "@/service/loginget.js";
+import { setToken } from '@/utils/tokencookie.js';
 export default {
   props: {},
   components: {},
@@ -55,7 +56,7 @@ export default {
               console.log(data, "data");
               if (data.code === 1) {
                 this.$message("登录成功");
-                localStorage.setItem('swjtoken',data.token)
+                setToken(data.token)
                 this.$router.push("/home");
               } else {
                 this.$message("登录失败，请重新登录");
@@ -77,8 +78,6 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  /* background: url(https://img.kaikeba.com/11656150219102qcla.jpg) no-repeat; */
-  /* background: url(https://img.kaikeba.com/24856150219102jkiy.jpg) no-repeat center; */
   background: url(https://img.kaikeba.com/72809150219102rmia.jpg) no-repeat
     center;
   background-size: 100% 100%;

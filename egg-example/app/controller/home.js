@@ -42,8 +42,10 @@ class HomeController extends Controller {
     const { ctx } = this;
     let { user, phone } = ctx.request.body;
     let str = await ctx.service.user.loginFn(user, phone);
-    if (str.length != 0) {
+    console.log('login--str',str)
+    if (str.length > 0) {
       if (str[0].token) {
+        console.log('login--str[0].token',str[0].token)
         ctx.body = {
           code: 1,
           id: str[0].id,
@@ -77,9 +79,12 @@ class HomeController extends Controller {
   // 首页
   async home() {
     const { ctx } = this;
-    let { params } = ctx.request.query;
-    let admin_user = await ctx.service.user.adminUser(params);
+    console.log('home---ctx.request.query',ctx.request.query)
+    let { token } = ctx.request.query;
+    console.log('home---paarams',token)
+    let admin_user = await ctx.service.user.adminUser(token);
     let list = [];
+    console.log(admin_user)
     if (admin_user.length > 0) {
       if (admin_user[0].role == "admin") {
         list = data.filter(v => {

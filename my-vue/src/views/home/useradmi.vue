@@ -16,12 +16,16 @@
             +
           </span>
         </h4>
-        <p>{{ itm.texts}}</p>
+        <p>{{ itm.texts}}
+          <!-- <b>{{datas}}</b> -->
+        </p>
     </div>
   </div>
 </template>
 <script>
 import { shopingget } from "@/service/loginget.js";
+import { getToken } from '@/utils/tokencookie.js';
+import { mapState } from 'vuex'
 export default {
   props: {},
   components: {},
@@ -30,12 +34,15 @@ export default {
       data: []
     };
   },
-  computed: {},
-  methods: {},
+  computed: {
+    // ...mapState('login',['datas'])
+  },
+  methods: {
+  },
   created() {
-    if (localStorage.getItem("swjtoken")) {
+    console.log('datas',this.datas)
+    if (getToken()) {
       shopingget("/shopgin").then(list => {
-        console.log(list, "--list---");
         this.data = list;
       });
     }

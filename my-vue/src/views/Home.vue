@@ -3,20 +3,22 @@
     <el-container>
       <el-aside width="5rem">
         <el-menu
+          width="100%"
           default-active="2"
-          class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
-        >
+          class="el-menu-vertical-demo"
+          background-color="#000"
+          text-color="#fff"
+          active-text-color="#ffd04b">
           <el-submenu :index="itm.id" v-for="itm in list" :key="itm.id">
-            <template slot="title">
+            <span slot="title">
               <i class="el-icon-message"></i>
               {{itm.name}}
-            </template>
-            <el-menu-item-group v-for="(item,index) in itm.children" :key="index">
-              <template slot="title">{{item.id}}</template>
+            </span>
+            <el-menu-item v-for="(item,index) in itm.children" :key="index">
               <el-menu-item :index="item.id" @click="clickFn(item.url)" :key="item.id">{{item.name}}</el-menu-item>
-            </el-menu-item-group>
+            </el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -41,6 +43,7 @@
 </template>
 <script>
 import { homeget} from "@/service/loginget.js";
+import { getToken ,removeToken} from '@/utils/tokencookie.js';
 // import {mapState} from 'vuex'
 export default {
   props: {},
@@ -48,20 +51,19 @@ export default {
   data() {
     return {
       list: [],
-      img: ""
+      img: "",
+      falg:false
     };
   },
   computed: {
-    // ...mapState({
-    //   datas:state=>login.state.data
-    // })
   },
   methods: {
     clickFn(url) {
       this.$router.push(url);
     },
     tuiFn(){
-        localStorage.clear('wsjtoken')
+      removeToken()
+      this.$router.push("/login")
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -71,13 +73,18 @@ export default {
     }
   },
   created() {
-    console.log(this.datas,'datas')
-    if (localStorage.getItem("swjtoken")) {
-      homeget("/home", localStorage.getItem("swjtoken"))
+    // console.log(getToken(),'datas')
+    let token=getToken();
+    if (token) {
+      homeget("/home", token)
         .then(data => {
-          this.list = data.list;
-          if (data.img) {
-            this.img = data.img;
+          if (data.code==1) {
+              this.list = data.list;
+            if (data.img) {
+              this.img = data.img;
+            }
+          }else{
+            this.$router.push("/login")
           }
         })
         .catch(err => {
@@ -92,6 +99,7 @@ export default {
 .home {
   width: 100%;
   height: 100%;
+  background: #000;
 }
 
 .el-container {
@@ -105,13 +113,13 @@ export default {
 }
 .el-header,
 .el-footer {
-  background-image: linear-gradient(top right, rgb(52, 189, 52), #e2df30);
-  color: #333;
+  color: #fff;
+  font-weight: bold;
   text-align: center;
   line-height: 30px;
+  background: #000;
 }
 .el-aside {
-  background-image: linear-gradient(top, rgb(25, 115, 199), #c01f55);
   color: #333;
   text-align: center;
   line-height: 200px;
@@ -120,28 +128,19 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: linear-gradient(top, rgb(25, 115, 199), #c01f55);
+  background: #000;
+  color: #fff;
 }
 .el-menu-item {
-  background-image: linear-gradient(left, rgb(48, 139, 224), #eb5c8b);
+  color: #fff;
+  background: #333;
 }
 .el-main {
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(left top, rgb(238, 240, 212), #d8340b);
-  color: #333;
+  color: #fff;
   text-align: center;
+  background: #333;
 }
 
-/* body > .el-container {
-    margin-bottom: 40px;
-  } */
-
-/* .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  } */
 </style>

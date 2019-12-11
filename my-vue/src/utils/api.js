@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { getToken } from "./index";
+import { getToken } from "./tokencookie.js";
 import { Message } from 'element-ui'
 const instance = axios.create({
   baseURL:"http://127.0.0.1:7001",
@@ -8,17 +8,22 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(
   config => {
-      console.log('【二次axios--config】')
+     const token = getToken();
+      // console.log('【二次axios--config】',config)
+      if (token) {
+        // console.log(token,'cookie--token=--2')
+        config.params = {'token': token} //后台接收的参数，后面我们将说明后台如何接收
+      }
     return config;
   },
   error => {
-    console.log('【二次axios--error--14')
+    // console.log('【二次axios--error--14',error)
     return Promise.reject(error);
   }
 );
 instance.interceptors.response.use(
   (response) => {
-    console.log('【二次axios--response')
+    // console.log('【二次axios--response',response)
     if (response.status==200) {
     //  alert(response.statusText);
     Message({
@@ -29,7 +34,7 @@ instance.interceptors.response.use(
     return response.data;
   },
   error => {
-    console.log('【二次axios--error--27')
+    // console.log('【二次axios--error--27',error)
     if (error.response.status && error.response.status !== 200) {
       // alert(error.response.statusText);
       Message({
