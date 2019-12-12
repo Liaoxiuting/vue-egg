@@ -14,23 +14,23 @@ const routers = [
       },
       {
         id: "2",
-        name: "系统更新",
+        name: "用户管理",
         children:[
             {
                 id: "2a",
-                name: "@系统公告@",
-                url: "/home/bulletin",
+                name: "@用户统计@",
+                url: "/home/userStatistics",
             }
         ]
       },
       {
         id: "3",
-        name: "用户统计",
+        name: "系统更新",
         children:[
             {
                 id: "3a",
-                name: "@系统消息@",
-                url: "/home/notice",
+                name: "@系统公告@",
+                url: "/home/bulletin",
             }
         ]
       },

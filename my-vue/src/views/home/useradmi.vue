@@ -35,12 +35,13 @@ export default {
     };
   },
   computed: {
-    // ...mapState('login',['datas'])
+    ...mapState('login',['datas']),
+    ...mapState('useradmi',['list'])
   },
   methods: {
   },
   created() {
-    console.log('datas',this.datas)
+    console.log('list',this.list)
     if (getToken()) {
       shopingget("/shopgin").then(list => {
         this.data = list;

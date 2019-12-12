@@ -14,6 +14,11 @@ export function homeget(url,params){
         params:{params}
     })
 }
+// 购物 商品 数据
 export function shopingget(url){
+    return request.get(url)
+}
+// 用户 数据
+export function userStatistics(url){
     return request.get(url)
 }

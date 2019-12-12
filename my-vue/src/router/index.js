@@ -13,7 +13,7 @@ import Register from '@/views/Register.vue'
 // home
 import Useradmi from '@/views/home/useradmi.vue'
 import Bulletin from '@/views/home/bulletin.vue'
-import Notice from '@/views/home/notice.vue'
+import UserStatistics from '@/views/home/userStatistics.vue'
 import Role from '@/views/home/role.vue'
 
 import Isauseradmi from '@/views/home/isauseradmi.vue'
@@ -46,9 +46,9 @@ const routes=[
         component:Bulletin
       },
       {
-        path:"/home/notice",
-        name:'notice',
-        component:Notice
+        path:"/home/userStatistics",
+        name:'userStatistics',
+        component:UserStatistics
       },
       {
         path:"/home/role",

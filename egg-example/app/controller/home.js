@@ -13,7 +13,7 @@ class HomeController extends Controller {
     const { ctx } = this;
     let { user, phone } = ctx.request.body;
     let str = await ctx.service.user.loginFn(user, phone);
-    console.log(str.length,'====str==')
+    // console.log(str.length,'====str==')
     if (str.length != 0) {
       ctx.body = {
         code: 0,
@@ -21,8 +21,10 @@ class HomeController extends Controller {
       };
     } else {
       let token = tokenFn(phone);
-      let strs = await ctx.service.user.registerFn(user, phone);
-      console.log(strs,'---strs')
+      let now = new Date().getTime(); //当前日期 的时间戳 【getTime()转时间戳】
+      // console.log('createTime---',now,'---createTime')
+      let strs = await ctx.service.user.registerFn(user, phone,now);
+      // console.log(strs,'---strs')
       if (strs.affectedRows == 1) {
         await ctx.service.user.addtoken(token, phone);
         ctx.body = {
@@ -42,10 +44,10 @@ class HomeController extends Controller {
     const { ctx } = this;
     let { user, phone } = ctx.request.body;
     let str = await ctx.service.user.loginFn(user, phone);
-    console.log('login--str',str)
+    // console.log('login--str',str)
     if (str.length > 0) {
       if (str[0].token) {
-        console.log('login--str[0].token',str[0].token)
+        // console.log('login--str[0].token',str[0].token)
         ctx.body = {
           code: 1,
           id: str[0].id,
@@ -79,12 +81,12 @@ class HomeController extends Controller {
   // 首页
   async home() {
     const { ctx } = this;
-    console.log('home---ctx.request.query',ctx.request.query)
+    // console.log('home---ctx.request.query',ctx.request.query)
     let { token } = ctx.request.query;
-    console.log('home---paarams',token)
+    // console.log('home---paarams',token)
     let admin_user = await ctx.service.user.adminUser(token);
     let list = [];
-    console.log(admin_user)
+    // console.log(admin_user)
     if (admin_user.length > 0) {
       if (admin_user[0].role == "admin") {
         list = data.filter(v => {
@@ -139,6 +141,25 @@ class HomeController extends Controller {
     let { ctx } =this;
     let data=await ctx.service.user.shopginFn();
     ctx.body=data
+  }
+  // 用户数据
+  async statistics(){
+    let {ctx}=this;
+    let data=await ctx.service.user.userStatisticsFn();
+    // console.log('statistics---data',data)
+    if (data.length!=0) {
+      data.map((v)=>{
+        delete(v.token)//将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
+      })
+      ctx.body={
+        code:1,data,msg:'请求成功'
+      }
+    }else{
+      ctx.body={
+        code:0,msg:'请求失败'
+      }
+    }
+    
   }
 }
 
