@@ -5,7 +5,9 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+// import '@/style/index.scss' // global css
 import Scroll from './components/scroll'
+import Statistics from './views/component/statistics.vue'
 // rem自适应
 import 'lib-flexible/flexible.js'
 Vue.config.productionTip = false
@@ -17,7 +19,16 @@ remAndphoneConfig()
 Vue.use(ElementUI);
 
 Vue.component(Scroll.name,Scroll)
+Vue.component('Statistics',Statistics)
 
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  components: { App },
+  template: '<App/>'
+})
 // 路由拦截器
 // router.beforeEach((to, from, next) => {
 //   if (to.matched.length != 0) {
@@ -54,11 +65,3 @@ Vue.component(Scroll.name,Scroll)
 //   }
 // })
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-})

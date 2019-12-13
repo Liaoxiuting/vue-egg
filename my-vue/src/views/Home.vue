@@ -25,7 +25,7 @@
       <el-container>
         <el-header height="2rem">
           <img :src="img" alt v-if="img" />
-          <button @click="tuiFn">
+          <button @click="tuiFn" class="btn_tui" >
               退出登录
           </button>
         </el-header>
@@ -110,8 +110,12 @@ export default {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
+  margin-right: 0.5rem;
 }
-.el-header,
+.el-header{
+  display: flex;
+  align-items: center
+}
 .el-footer {
   color: #fff;
   font-weight: bold;
@@ -141,6 +145,14 @@ export default {
   color: #fff;
   text-align: center;
   background: #333;
+}
+.btn_tui{
+  width: 1.5rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  background: #333;
+  border:0;
+  color: #fff;
 }
 
 </style>

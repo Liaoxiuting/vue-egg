@@ -11,6 +11,8 @@ module.exports = app => {
   // router.get('/home',controller.home.home);
   router.post('/login', controller.home.login);
   router.post('/register',controller.home.register);
-  router.get('/shopgin',controller.home.shopgin)
-  router.get('/userstatistics',controller.home.statistics)
+  router.get('/shopgin',controller.home.shopgin);
+  router.get('/userstatistics',controller.home.statistics);//获取用户
+  router.post('/userstatistics/deleterow',controller.home.deleteRow);//删除用户
+  router.post('/userstatistics/modifyrow',controller.home.modifyRow);//修改用户
 };

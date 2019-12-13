@@ -161,6 +161,52 @@ class HomeController extends Controller {
     }
     
   }
+  // 用户数据  移除
+   async deleteRow(){
+      let {ctx}=this;
+      let { id } = ctx.request.body;
+      // console.log(id,'------id')
+      let str= await ctx.service.user.deleteRowFn(id)
+      // console.log(str,'------str')
+      if (str.affectedRows==1) {
+        let data=await ctx.service.user.userStatisticsFn();
+        // console.log('statistics---data',data)
+        if (data.length!=0) {
+          data.map((v)=>{
+            delete(v.token)//将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
+          })
+          ctx.body={
+            code:1,data,msg:'请求成功'
+          }
+        }
+      }
+   }
+  // 用户数据  修改
+  async modifyRow(){
+      let {ctx}=this;
+      let { id ,user ,texts,imgs} = ctx.request.body;
+      console.log(id ,user ,texts,imgs)
+      if (id&&user&&texts) {
+        let str = await ctx.service.user.modifyRowFn(id,user,texts,imgs)
+        if (str.affectedRows==1) {
+          let data=await ctx.service.user.userStatisticsFn();
+          // console.log('statistics---data',data)
+          if (data.length!=0) {
+            data.map((v)=>{
+              delete(v.token)//将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
+            })
+            ctx.body={
+              code:1,data,msg:'请求成功'
+            }
+          }
+        }
+      }else{
+        ctx.body={
+          code:0,
+          msg:"请求失败",
+        }
+      }
+  }
 }
 
 module.exports = HomeController;

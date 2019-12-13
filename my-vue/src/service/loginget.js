@@ -22,3 +22,11 @@ export function shopingget(url){
 export function userStatistics(url){
     return request.get(url)
 }
+//修改用户  数据
+export function modifyRowFn(url,obj){
+    return request.post(url,obj)
+}
+//删除用户  数据
+export function deleteRowFn(url,obj){
+    return request.post(url,obj)
+}
