@@ -30,7 +30,7 @@ export default {
     }
 }
 </script>
-<style scoped lang="">
+<style scoped lang="less">
 .role{
     width: 100%;
     height: 100%;

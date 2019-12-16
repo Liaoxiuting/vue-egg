@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import login from './modules/login';
 import useradmi from './modules/useradmi';
+import userStatistics from './modules/userStatistics';
 import getters from './getters';
 Vue.use(Vuex);
 
@@ -20,7 +21,7 @@ Vue.use(Vuex);
 // }, {})
 const store= new Vuex.Store({
     modules:{
-        login,useradmi
+        login,useradmi,userStatistics
     },
     getters
 })

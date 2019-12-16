@@ -32,7 +32,7 @@ export default {
 
     },
     methods:{   
-        ...mapActions('useradmi',['modifyRow']),
+        ...mapActions('userStatistics',['modifyRow']),
         clickFn(str){
             if(str=="ok"){
                 if (this.obj.user&&this.obj.texts) {

@@ -107,10 +107,10 @@ export default {
         }
     },
     computed:{
-        ...mapState('useradmi',['list'])
+        ...mapState('userStatistics',['list'])
     },
     methods:{
-        ...mapActions('useradmi',['userStatisticsFn','deleteRow']),
+        ...mapActions('userStatistics',['userStatisticsFn','deleteRow']),
         deleteFn(scope,rows) {//移除操作
             console.log(scope)
             let id=scope.row.id;
