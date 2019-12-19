@@ -13,8 +13,8 @@
       <div class="home_bottom_son" :index="itm.id" v-for="(itm,ind) in list" :key="itm.id">
         <div class="home_bottom_son_router">
           <span @click="showFn(ind)">{{itm.name}}</span>
-          <div class="home_bottom_son_spn" v-for="(item,index) in itm.children" :key="index">
-            <p v-show="ind==idx" @click="clickFn(item.url)" :key="item.id">{{item.name}}</p>
+          <div v-show="ind==idx"  class="home_bottom_son_spn" v-for="(item,index) in itm.children" :key="index">
+            <p @click="clickFn(item.url)" :key="item.id">{{item.name}}</p>
           </div>
         </div>
       </div>
@@ -144,9 +144,10 @@ export default {
         text-align: center;
         .home_bottom_son_spn{
           position: fixed;
-          bottom: 1.2rem;
+          bottom: 1rem;
           left: 0;
           width: 100%;
+    background-image: linear-gradient(top right, #110f0f);
           height: 0.8rem;
           box-shadow: 0px 0px 10px #d6d1d1;
           .flex();
