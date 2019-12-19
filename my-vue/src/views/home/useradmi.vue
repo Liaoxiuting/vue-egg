@@ -1,8 +1,18 @@
 <template>
   <div class="useradmi">
-    <div class="box" v-for="itm in data" :key="itm.id">
+    <div class="box" v-for="itm in list" :key="itm.id">
       <img :src="itm.imgs" alt />
       <h3>{{itm.titles}}</h3>
+      <h5>
+        <b>限价：{{
+          itm.many
+        }}</b>
+        <i>
+          原价：{{
+            itm.primary
+          }}
+        </i>
+      </h5>
       <h4>
         <span>-</span>
         <b>{{itm.conts}}</b>
@@ -10,35 +20,29 @@
       </h4>
       <p>
         {{ itm.texts}}
-        <!-- <b>{{datas}}</b> -->
       </p>
     </div>
   </div>
 </template>
 <script>
-import { shopingget } from "@/service/loginget.js";
-import { getToken } from "@/utils/tokencookie.js";
-import { mapState } from "vuex";
+import { mapState ,mapActions} from "vuex";
 export default {
   props: {},
   components: {},
   data() {
     return {
-      data: []
+      data: [],
     };
   },
   computed: {
-    ...mapState("login", ["datas"]),
     ...mapState("useradmi", ["list"])
   },
-  methods: {},
+  methods: {
+    ...mapActions('useradmi',['shopIng'])
+  },
   created() {
-    console.log("list", this.list);
-    if (getToken()) {
-      shopingget("/shopgin").then(list => {
-        this.data = list;
-      });
-    }
+    this.shopIng()
+    console.log(navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null,'000000000')
   },
   mounted() {}
 };
@@ -51,20 +55,37 @@ export default {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-
+  h1,h2,h3,h4,h5,h6{
+    font-style: normal;
+  }
   .box {
-    width: 6rem;
+    width: 4.5rem;
     height: auto;
     flex-direction: column;
     display: flex;
     align-items: center;
+    background: dimgray;
+    margin:0.01rem 0.17rem;
     img {
       width: 4rem;
+      height: 4rem;
+      border-radius: 50%
     }
     h3 {
       width: 100%;
       height: 1rem;
       line-height: 1rem;
+    }
+    h5{
+      width: 100%;
+      height: 1rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      i{
+        color: red;
+        text-decoration:line-through;
+      }
     }
     h4 {
       width: 4rem;

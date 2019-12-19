@@ -10,6 +10,7 @@ import Scroll from './components/scroll'
 import Statistics from './views/component/statistics.vue'
 // rem自适应
 import 'lib-flexible/flexible.js'
+// import './lib/flexible.js'
 Vue.config.productionTip = false
 // rem自适应
 import remAndphoneConfig from './configs/remComfig.js'

@@ -2,12 +2,20 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { setToken ,getToken,removeToken } from '@/utils/tokencookie.js';
 
+import { isMobileFlag } from "@/utils/index.js";
+import la from "./loadableComponent";
+let isMc = (mc, pc) => {
+  return isMobileFlag() ? la(mc) : la(pc);
+};
 //楼层 
 // import Loucheng from '@/components/loucheng'
-
 // 购物车
 import Login from '@/views/Login.vue'
+import LoginMc from '@/views/LoginMc.vue'
+
 import Home from '@/views/Home.vue'
+import HomeMc from '@/views/HomeMc.vue'
+
 import Register from '@/views/Register.vue'
 
 // home
@@ -29,7 +37,7 @@ const routes=[
   {
     path:'/home',
     name:'Home',
-    component:Home,
+    component:isMc(HomeMc,Home),
     children:[
       {
         path:"/home",
@@ -38,7 +46,7 @@ const routes=[
       {
         path:"/home/useradmi",
         name:'useradmi',
-        component:Useradmi
+        component:isMc(Role,Useradmi)
       },
       {
         path:"/home/bulletin",
@@ -70,7 +78,7 @@ const routes=[
   {
     path:'/login',
     name:'Login',
-    component:Login
+    component:isMc(LoginMc,Login)
   },{
     path:'/register',
     name:'register',
