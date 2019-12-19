@@ -3,8 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
 // import '@/style/index.scss' // global css
 import Scroll from './components/scroll'
 import Statistics from './views/component/statistics.vue'
@@ -17,7 +22,9 @@ import remAndphoneConfig from './configs/remComfig.js'
 
 import store from './store/index.js'
 remAndphoneConfig()
+
 Vue.use(ElementUI);
+Vue.use(MintUI)
 
 Vue.component(Scroll.name,Scroll)
 Vue.component('Statistics',Statistics)

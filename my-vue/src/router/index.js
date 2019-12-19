@@ -10,22 +10,33 @@ let isMc = (mc, pc) => {
 //楼层 
 // import Loucheng from '@/components/loucheng'
 // 购物车
-import Login from '@/views/Login.vue'
-import LoginMc from '@/views/LoginMc.vue'
+import Login from '@/views/PC/Login.vue'
+import LoginMc from '@/views/MC/LoginMc.vue'
 
-import Home from '@/views/Home.vue'
-import HomeMc from '@/views/HomeMc.vue'
+import Home from '@/views/PC/Home.vue'
+import HomeMc from '@/views/MC/HomeMc.vue'
 
-import Register from '@/views/Register.vue'
+import Register from '@/views/PC/Register.vue'
+import RegisterMC from '@/views/MC/Register.vue'
 
-// home
-import Useradmi from '@/views/home/useradmi.vue'
-import Bulletin from '@/views/home/bulletin.vue'
-import UserStatistics from '@/views/home/userStatistics.vue'
-import Role from '@/views/home/role.vue'
 
-import Isauseradmi from '@/views/home/isauseradmi.vue'
-import Isabulletin from '@/views/home/isabulletin.vue'
+// PC
+import Useradmi from '@/views/PC/home/useradmi.vue'
+import Bulletin from '@/views/PC/home/bulletin.vue'
+import UserStatistics from '@/views/PC/home/userStatistics.vue'
+import Role from '@/views/PC/home/role.vue'
+
+import Isauseradmi from '@/views/PC/home/isauseradmi.vue'
+import Isabulletin from '@/views/PC/home/isabulletin.vue'
+
+// MC
+import UseradmiMC from '@/views/MC/home/useradmi.vue'
+import BulletinMC from '@/views/MC/home/bulletin.vue'
+import UserStatisticsMC from '@/views/MC/home/userStatistics.vue'
+import RoleMC from '@/views/MC/home/role.vue'
+
+import IsauseradmiMC from '@/views/MC/home/isauseradmi.vue'
+import IsabulletinMC from '@/views/MC/home/isabulletin.vue'
 
 Vue.use(Router)
 const routes=[
@@ -46,32 +57,32 @@ const routes=[
       {
         path:"/home/useradmi",
         name:'useradmi',
-        component:isMc(Role,Useradmi)
+        component:isMc(UseradmiMC,Useradmi)
       },
       {
         path:"/home/bulletin",
         name:'bulletin',
-        component:Bulletin
+        component:isMc(BulletinMC,Bulletin)
       },
       {
         path:"/home/userStatistics",
         name:'userStatistics',
-        component:UserStatistics
+        component:isMc(UserStatisticsMC,UserStatistics)
       },
       {
         path:"/home/role",
         name:'role',
-        component:Role
+        component:isMc(RoleMC,Role)
       },
       {
         path:"/home/isauseradmi",
         name:'isauseradmi',
-        component:Isauseradmi
+        component:isMc(IsauseradmiMC,Isauseradmi)
       },
       {
         path:"/home/isabulletin",
         name:'isabulletin',
-        component:Isabulletin
+        component:isMc(IsabulletinMC,Isabulletin)
       }
     ]
   },
@@ -82,7 +93,7 @@ const routes=[
   },{
     path:'/register',
     name:'register',
-    component:Register
+    component:isMc(RegisterMC,Register)
   },{
     path:'/',
     redirect:"/home"
