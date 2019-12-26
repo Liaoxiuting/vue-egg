@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 判断 PC端 和 移动端环境
+        function name(params) {
+            let pm=navigator.userAgent.toLowerCase()
+           console.log(pm,'pm') // PcMc.html:14 mozilla/5.0 (windows nt 10.0; wow64) applewebkit/537.36 (khtml, like gecko) chrome/79.0.3945.88 safari/537.36 pm
+           let is_mobile = pm.match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null;
+            console.log(is_mobile,'is_mobile') 
+        //    return is_mobile;
+        }
+        name()
+    </script>
+</body>
+</html>

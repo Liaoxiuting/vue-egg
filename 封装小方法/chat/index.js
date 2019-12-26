@@ -71,7 +71,6 @@ io.on('connection', function (socket) {
     if (addedUser) {
       --numUsers;
       // echo globally that this client has left
-      //在全局范围内回显此客户端已离开
       socket.broadcast.emit('user left', {
         username: socket.username,
         numUsers: numUsers
@@ -79,3 +78,5 @@ io.on('connection', function (socket) {
     }
   });
 });
+
+//在全局范围内回显此客户端已离开
