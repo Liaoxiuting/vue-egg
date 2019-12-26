@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6_promise</title>
+</head>
+<body>
+    <script>
+        // var Object={
+        //     city:'武汉',
+        //     loc:'南方',
+        // }
+        //  使用resolve
+        // let p = new Promise((resolve,reject)=>{
+        //     setTimeout(()=> {
+        //         console.log('延时器代码执行')
+        //         // 执行成功
+        //         resolve('执行成功')
+        //     },1000)
+        // })
+        // p.then(res=>{
+        //     console.log(res)  //执行成功
+        // })
+        function myPromise(callback) { //callback 代表( resolve,reject ) => {}
+            // 默认状态pending，首先没有执行成功或失败函数之前状态是pending
+            console.log(this,'this')
+            this.promiseStatus = 'pending';
+            this.msg;
+            // console.log(this.promiseStatus,'this.promiseStatus')
+            // console.log(this.msg,'msg')
+            // 用that存当前this的内容
+            let that = this
+            // new 自动执行 , 调用callback
+            callback(
+                // 定义resolve
+                function () {
+                    // console.log(this.promiseStatus,'this.promiseStatus。resolve')
+                    // 这里面的arguments,this都是坑，他们两个都是坑人大咖，两个都是不定值
+                    that.promiseStatus = 'resolved';
+                    // resolve 的第一个实参
+                    that.msg = arguments[0];
+                },
+                // 定义reject
+                function () {
+            // console.log(this.promiseStatus,'this.promiseStatus。rejected')
+                    that.promiseStatus = 'rejected';
+                    // rejected 的第一个实参
+                    that.msg = arguments[0];
+                }
+            );
+        }
+        // 往myPromise 原型上添加then方法
+        myPromise.prototype.then = function () {
+            // 这里的this就是让实例调用，指向实例的，并不是指向构造函数!!! 花式秀this
+            if (this.promiseStatus == 'resolved') {
+                arguments[0](this.msg);
+            } else if (this.promiseStatus == 'rejected') {
+                arguments[1](this.msg);
+            }
+        };
+        // 实例化
+        const p = new myPromise((resolve, reject) => {
+            resolve('成功')
+            // reject('失败')
+        });
+        // 使用then
+        p.then(
+            function (res) {
+                console.log(res);
+            },
+            function (err) {
+                console.log(err);
+            }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    </style>
+</head>
+<body>
+    
+    <script>
+        var arr = [
+            "./img/a.webp",
+            "./img/b.webp",
+            "./img/c.webp",
+            "./img/d.webp",
+            "./img/e.webp",
+            "./img/f.webp",
+            "./img/g.webp"
+        ]
+
+        function PromiseFn(wsjfn){
+            this.status='pending';
+            this.msg='';
+            this.then()
+        }
+
+        PromiseFn.prototype={
+            then:()=>{
+
+            }
+        }
+
+        let wsjFn=function(src,i){
+            return new PromiseFn((resolve,reject)=>{
+                let img = document.createElement('img');
+                img.src=src;
+                document.body.appendChild(img)
+            })
+        }
+
+        async function SFn(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                await wsjFn(arr[i],i)
+            }
+        }
+        SFn(arr)
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        $ajax({
+            'url': "", //请求地址
+            'type': 'GET', //请求方式
+            'data': {
+                name: '悟生境',
+                age: '23',
+                email: '2425584633@qq.com'
+            }, //请求参数
+            'dataType': "json", // 返回值类型的设定
+            'async': false, //是否异步
+            'success': function (response, xml) {
+                console.log(response); //   此处执行请求成功后的代码
+            },
+            'error': function (err) {
+                console.log('状态码为' + err); // 此处为执行成功后的代码 
+            }
+        });
+        function $ajax(obj) {
+            // var objs = {
+            //     data: "路还长，别失望",
+            //     type: 'null',
+            //     url: null,
+            //     async: true,
+            //     success: null,
+            //     error: null
+            // }
+            // var merge = mergeFn({}, objs, obj); //合并外面传的  和  内部的  obj
+            merge=obj;
+            var xhr = null;
+            //1、创建对象
+            /**  一
+            * 创建一个 ajax请求
+            * W3C标准  new XMLHttpRequest() 和  IE标准   new ActiveXObject('Microsoft.XMLHTTP')
+            */
+            xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            /**   二
+            * 判断
+            * //responseText返回的是字符串
+            */
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState==4) {
+                    if (xhr.status==200) {
+                        merge.success&&merge.success(eval("(" + xhr.responseText + ")"));
+                    }else{
+                        merge.error&&merge.error()
+                    }
+                }
+            }
+            /**
+            * 三
+            */
+            if (merge.type=='get'||merge.type=='GET') {
+                merge.type='get';
+                 //2 在地址栏写地址
+                // //三个参数：1、method :get|post方法2、url 请求地址3、是否异步 true|false，默认是异步
+                xhr.open(merge.type,merge.url+'?'+merge.data,merge.async);
+                 //3、提交
+                //这个send也有一个参数，这个参数是指的是向后端发送请求的时候传递的参数，如果没有参数，设置成null；
+                xhr.send(null);
+            }
+            if (merge.type=='post'||merge.type=='POST') {
+                merge.type='post';
+                /** 
+                *打开请求
+                * */ 
+                xhr.open(merge.type,merge.url,merge.async);
+                /**
+                * POST请求设置请求头
+                * */
+                xhr.setRequestHeader('Content-Type','application/x-www-from-urlencoed');
+                 /**
+                * 发送请求参数
+                */
+                xhr.send(merge.data)
+            }
+        }
+        function mergeFn() {
+            // console.log(arguments, '----arguments')
+            for (var i = 1; 1 < arguments.length; i++) {
+                // console.log(arguments[i], '----arguments[i]')
+                for (const j in arguments[i]) {
+                    // console.log(arguments[0][j], '----arguments[0][j]')
+                    // console.log(arguments[i][j], '----arguments[i][j]')
+                    arguments[0][j] = arguments[i][j]
+                }
+            }
+            // console.log(arguments[0], '-----arguments[0]')
+            return arguments[0]
+        }
+    </script>
+</body>
+
+</html>
