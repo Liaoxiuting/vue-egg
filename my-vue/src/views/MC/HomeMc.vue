@@ -4,11 +4,9 @@
       <img :src="img" alt v-if="img" />
       <button @click="tuiFn" class="btn_tui">退出登录</button>
     </div>
-
     <div class="home_section">
       <router-view />
     </div>
-
     <div class="home_bottom">
       <div class="home_bottom_son" :index="itm.id" v-for="(itm,ind) in list" :key="itm.id">
         <div class="home_bottom_son_router">

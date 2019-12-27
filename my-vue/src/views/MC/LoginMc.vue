@@ -40,7 +40,6 @@ export default {
       } else {
         if (!/^1(3|5|7|8)\d{9}$/.test(this.formLabelAlign.phone)) {
           this.msgFn("手机输入格式不正确");
-          
         } else {
           console.log(
             "user",
@@ -48,7 +47,6 @@ export default {
             "phone",
             this.formLabelAlign.phone
           );
-
           loginget("/login", {
             user: this.formLabelAlign.name,
             phone: this.formLabelAlign.phone
@@ -87,14 +85,15 @@ export default {
     height: 5rem;
     position: absolute;
     bottom: 10%;
-    right:2%;
-    // background-image: linear-gradient(top right, #88888f, #110f0f);
+    left:50%;
+    transform: translate(-50%);
     flex-direction: column;
     display: flex;
     justify-content: space-around;
     align-items: center;
     box-shadow: 0px 0px 10px #d6d1d1;
     border-radius: 0.5rem;
+    // background-image: linear-gradient(top right, #88888f, #110f0f);
     input{
         width: 80%;
         height: 0.8rem;

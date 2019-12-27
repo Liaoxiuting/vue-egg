@@ -42,7 +42,6 @@ export default {
   },
   created() {
     this.shopIng()
-    console.log(navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null,'000000000')
   },
   mounted() {}
 };
@@ -59,7 +58,7 @@ export default {
     font-style: normal;
   }
   .box {
-    width: 4.5rem;
+    width: 50%;
     height: auto;
     flex-direction: column;
     display: flex;
@@ -67,14 +66,14 @@ export default {
     background: dimgray;
     margin:0.01rem 0.17rem;
     img {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%
+      width:100%;
+      border-radius: 50%;
     }
     h3 {
       width: 100%;
       height: 1rem;
       line-height: 1rem;
+      text-align:center;
     }
     h5{
       width: 100%;
@@ -95,10 +94,10 @@ export default {
       justify-content: space-around;
       align-items: center;
       span {
-        font-size: 0.6rem;
+        font-size: 0.3rem;
       }
       b{
-        font-size: 0.6rem;
+        font-size: 0.3rem;
       }
     }
     p {
