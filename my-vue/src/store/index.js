@@ -1,11 +1,10 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import login from './modules/login';
-import useradmi from './modules/useradmi';
-import userStatistics from './modules/userStatistics';
-import getters from './getters';
+import Vue from "vue";
+import Vuex from "vuex";
+import login from "./modules/login";
+import shop from "./modules/shop";
+import userStatistics from "./modules/userStatistics";
+import getters from "./getters";
 Vue.use(Vuex);
-
 
 // // https://webpack.js.org/guides/dependency-management/#requirecontext
 // const modulesFiles = require.context('./modules', true, /\.js$/)
@@ -19,10 +18,12 @@ Vue.use(Vuex);
 //   modules[moduleName] = value.default
 //   return modules
 // }, {})
-const store= new Vuex.Store({
-    modules:{
-        login,useradmi,userStatistics
-    },
-    getters
-})
+const store = new Vuex.Store({
+  modules: {
+    login,
+    shop,
+    userStatistics
+  },
+  getters
+});
 export default store;

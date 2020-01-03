@@ -23,7 +23,7 @@ class HomeController extends Controller {
       let token = tokenFn(phone);
       let now = new Date().getTime(); //当前日期 的时间戳 【getTime()转时间戳】
       // console.log('createTime---',now,'---createTime')
-      let strs = await ctx.service.user.registerFn(user, phone,now);
+      let strs = await ctx.service.user.registerFn(user, phone, now);
       // console.log(strs,'---strs')
       if (strs.affectedRows == 1) {
         await ctx.service.user.addtoken(token, phone);
@@ -38,7 +38,7 @@ class HomeController extends Controller {
         };
       }
     }
-}
+  }
   // 登录
   async login() {
     const { ctx } = this;
@@ -111,7 +111,7 @@ class HomeController extends Controller {
       } else {
         list = data.filter(v => {
           for (const key in v) {
-            return key == 'user';
+            return key == "user";
           }
         });
         if (admin_user[0].imgs) {
@@ -137,75 +137,93 @@ class HomeController extends Controller {
     }
   }
   //商品数据
-  async shopgin(){
-    let { ctx } =this;
-    let data=await ctx.service.user.shopginFn();
-    ctx.body=data
+  async shopgin() {
+    let { ctx } = this;
+    let data = await ctx.service.user.shopginFn();
+    if (data.length!=0) {
+      ctx.body = {
+        code:0,
+        data,
+        msg:'请求失败'
+      };
+    }else{
+      ctx.body = {
+        code:1,
+        msg:'请求失败',
+        data:[]
+      };
+    }
   }
   // 用户数据
-  async statistics(){
-    let {ctx}=this;
-    let data=await ctx.service.user.userStatisticsFn();
+  async statistics() {
+    let { ctx } = this;
+    let data = await ctx.service.user.userStatisticsFn();
     // console.log('statistics---data',data)
-    if (data.length!=0) {
-      data.map((v)=>{
-        delete(v.token)//将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
-      })
-      ctx.body={
-        code:1,data,msg:'请求成功'
-      }
-    }else{
-      ctx.body={
-        code:0,msg:'请求失败'
-      }
+    if (data.length != 0) {
+      data.map(v => {
+        delete v.token; //将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
+      });
+      ctx.body = {
+        code: 1,
+        data,
+        msg: "请求成功"
+      };
+    } else {
+      ctx.body = {
+        code: 0,
+        msg: "请求失败"
+      };
     }
-    
   }
   // 用户数据  移除
-   async deleteRow(){
-      let {ctx}=this;
-      let { id } = ctx.request.body;
-      // console.log(id,'------id')
-      let str= await ctx.service.user.deleteRowFn(id)
-      // console.log(str,'------str')
-      if (str.affectedRows==1) {
-        let data=await ctx.service.user.userStatisticsFn();
-        // console.log('statistics---data',data)
-        if (data.length!=0) {
-          data.map((v)=>{
-            delete(v.token)//将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
-          })
-          ctx.body={
-            code:1,data,msg:'请求成功'
-          }
-        }
+  async deleteRow() {
+    let { ctx } = this;
+    let { id } = ctx.request.body;
+    // console.log(id,'------id')
+    let str = await ctx.service.user.deleteRowFn(id);
+    // console.log(str,'------str')
+    if (str.affectedRows == 1) {
+      let data = await ctx.service.user.userStatisticsFn();
+      // console.log('statistics---data',data)
+      if (data.length != 0) {
+        data.map(v => {
+          delete v.token; //将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
+        });
+        ctx.body = {
+          code: 1,
+          data,
+          msg: "请求成功"
+        };
       }
-   }
+    }
+  }
   // 用户数据  修改
-  async modifyRow(){
-      let {ctx}=this;
-      let { id ,user ,texts,imgs} = ctx.request.body;
-      console.log(id ,user ,texts,imgs)
-      if (id&&user&&texts) {
-        let str = await ctx.service.user.modifyRowFn(id,user,texts,imgs)
-        if (str.affectedRows==1) {
-          let data=await ctx.service.user.userStatisticsFn();
-          // console.log('statistics---data',data)
-          if (data.length!=0) {
-            data.map((v)=>{
-              delete(v.token)//将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
-            })
-            ctx.body={
-              code:1,data,msg:'请求成功'
-            }
-          }
-        }
-      }else{
-        ctx.body={
-          code:0,
-          msg:"请求失败",
+  async modifyRow() {
+    let { ctx } = this;
+    let { id, user, texts, imgs } = ctx.request.body;
+    console.log(id, user, texts, imgs);
+    if (id && user && texts) {
+      let str = await ctx.service.user.modifyRowFn(id, user, texts, imgs);
+      if (str.affectedRows == 1) {
+        let data = await ctx.service.user.userStatisticsFn();
+        // console.log('statistics---data',data)
+        if (data.length != 0) {
+          data.map(v => {
+            delete v.token; //将数据里的 每一项的 token 接去掉 避免用户的 token（关键信息）泄漏
+          });
+          ctx.body = {
+            code: 1,
+            data,
+            msg: "请求成功"
+          };
         }
       }
+    } else {
+      ctx.body = {
+        code: 0,
+        msg: "请求失败"
+      };
+    }
   }
 }
 

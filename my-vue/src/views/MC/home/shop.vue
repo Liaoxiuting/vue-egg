@@ -35,10 +35,10 @@ export default {
     };
   },
   computed: {
-    ...mapState("useradmi", ["list"])
+    ...mapState("shop", ["list"])
   },
   methods: {
-    ...mapActions('useradmi',['shopIng'])
+    ...mapActions('shop',['shopIng'])
   },
   created() {
     this.shopIng()

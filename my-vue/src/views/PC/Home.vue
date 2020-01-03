@@ -149,7 +149,7 @@ export default {
   margin: 0;
   padding: 0;
   color: #fff;
-  text-align: center;
+  overflow:hidden;
   background: #333;
 }
 .btn_tui{
