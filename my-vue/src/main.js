@@ -20,6 +20,12 @@ Vue.config.productionTip = false
 // rem自适应
 import remAndphoneConfig from './configs/remComfig.js'
 
+// echars
+// 全局引入 （在main.js中引入
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
+// vuex
 import store from './store/index.js'
 remAndphoneConfig()
 

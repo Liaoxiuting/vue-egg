@@ -25,23 +25,33 @@ const routers = [
       },
       {
         id: "3",
-        name: "系统更新",
+        name: "悟生境MAP",
         children: [
           {
             id: "3a",
-            name: "@系统公告@",
+            name: "@百度地图API@",
             url: "/home/bulletin"
           }
         ]
       },
       {
         id: "4",
-        name: "角色管理",
+        name: "Echarts",
         children: [
           {
             id: "4a",
-            name: "@角色管理@",
+            name: "@echarts@",
             url: "/home/role"
+          }
+        ]
+      },{
+        id: "5",
+        name: "swiperLxt",
+        children: [
+          {
+            id: "5a",
+            name: "@swiperLxt@",
+            url: "/home/swiperLxt"
           }
         ]
       }
@@ -62,11 +72,11 @@ const routers = [
       },
       {
         id: "2",
-        name: "系统公告",
+        name: "Echarts",
         children: [
           {
             id: "2a",
-            name: "@角色管理@",
+            name: "@echarts@",
             url: "/home/isabulletin"
           }
         ]

@@ -61,6 +61,12 @@ export default {
   },
   created() {
     this.shopIng()
+	  var arr={};
+    // var arr=[1,2,3,5,8,4,87,5,45];
+    console.log(arr instanceof Object)//false
+    
+
+    
     // console.log(navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null,'000000000')
   },
   mounted() {
@@ -77,13 +83,17 @@ export default {
   padding: 0;
   flex:1;
   .zong{
-    width:2rem;
+    width:3rem;
     height:1.5rem;
     background:#ccc;
     // position:fixed;
     position:absolute;
     bottom:2rem;
     right:0.5rem;
+      border-radius: 0.3rem;
+    h4{
+      margin-top:0.3rem;
+    }
   }
   h1,h2,h3,h4,h5,h6{
     font-style: normal;
@@ -91,17 +101,17 @@ export default {
   .useradmi_son{
     width:100%;
     height:auto;
-    display: flex;
-    flex-wrap: wrap;
-    
     .box {
       width: 4.5rem;
       height: auto;
+      float: left;
       flex-direction: column;
       display: flex;
       align-items: center;
       background: dimgray;
-      margin:0.01rem 0.17rem;
+      margin-top:0.3rem;
+      margin-left:  0.6rem;
+      border-radius: 0.3rem;
       img {
         width: 4rem;
         height: 4rem;

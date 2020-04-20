@@ -101,9 +101,9 @@ export default {
             detailObj:null,
             drawer: false,
             direction: 'rtl',//控制抽屉弹出的 方位 rtl / ltr / ttb / btt
-
             falge:false,
-            statisticsObj:null
+            statisticsObj:null,
+            listS:null
         }
     },
     computed:{
@@ -131,10 +131,11 @@ export default {
     created(){
         console.log(this.detailObj)
         this.userStatisticsFn('/userstatistics')
+        // this.listS=this.list
         
     },
     mounted(){
-
+        
     }
 }
 </script>

@@ -25,7 +25,8 @@ export default {
             a+=Number(b.many)*Number(b.conts).toFixed(2)
           }
           // return (a.toFixed(1))
-          return parseInt(a)
+          // return parseInt(a)//取整
+          return a//小数点
       },0)
     }
   },

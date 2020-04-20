@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    123
+
+    <script>
+
+        this.a=20;
+        var test={
+            a:40,
+            init:()=>{
+                console.log(this.a,'1111');
+                function go() {
+                    console.log(this.a,'22')
+                }
+                go.prototype.a=50;
+                return go;
+            }
+        }
+
+        new (test.init())()
+
+
+
+        var a=52;
+        let Mypromise=new Promise((resolver,rejected)=>{
+            setTimeout(()=>{
+                if (a==1) {
+                    resolver(a,'111111')
+                } else {
+                    rejected(a,'非111111')
+                }
+            },2000)
+        });
+
+
+        Mypromise.then(
+            resolved=>{
+                console.log(resolved,'one')
+            },
+            rejected=>{
+                console.log(rejected,'two')
+            }
+        )
+
+    </script>
+</body>
+</html>

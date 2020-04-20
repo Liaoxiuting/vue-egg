@@ -27,6 +27,7 @@ import Role from "@/views/PC/home/role.vue";
 
 import Isauseradmi from "@/views/PC/home/isauseradmi.vue";
 import Isabulletin from "@/views/PC/home/isabulletin.vue";
+import swiperLxt from "@/views/PC/home/swiperLxt.vue";
 
 // MC
 import UseradmiMC from "@/views/MC/home/shop.vue";
@@ -36,6 +37,7 @@ import RoleMC from "@/views/MC/home/role.vue";
 
 import IsauseradmiMC from "@/views/MC/home/isauseradmi.vue";
 import IsabulletinMC from "@/views/MC/home/isabulletin.vue";
+import swiperLxtMC from "@/views/MC/home/swiperLxt.vue";
 
 Vue.use(Router);
 const routes = [
@@ -51,7 +53,7 @@ const routes = [
     children: [
       {
         path: "/home",
-        redirect: "/home/useradmi"
+        redirect: "/home/shop"
       },
       {
         path: "/home/shop",
@@ -82,6 +84,11 @@ const routes = [
         path: "/home/isabulletin",
         name: "isabulletin",
         component: isMc(IsabulletinMC, Isabulletin)
+      },
+      {
+        path: "/home/swiperLxt",
+        name: "swiperLxt",
+        component: isMc(swiperLxtMC,swiperLxt)
       }
     ]
   },
