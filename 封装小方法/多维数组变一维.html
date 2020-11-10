@@ -12,7 +12,7 @@
         arrs=[];
         bian(arr)
         function bian(arr){
-          arr.map(v=>{
+          arr.forEach(v=>{
             if (v.length>0) {
               bian(v)
             }else{
