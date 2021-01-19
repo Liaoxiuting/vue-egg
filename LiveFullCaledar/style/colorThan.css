@@ -4,7 +4,7 @@
 }
 .greyColorThan {
   color: #222 !important;
-  background: rgba(204, 204, 204, 0.2) !important;
+  background: rgba(204, 204, 204, 0.1) !important;
 }
 .greenColor {
   background: #0AD893 !important;
@@ -12,7 +12,7 @@
 }
 .greenColorThan {
   color: #222 !important;
-  background: rgba(10, 216, 147, 0.2) !important;
+  background: rgba(10, 216, 147, 0.1) !important;
 }
 .blueColor {
   background: #16a0fe !important;
@@ -20,7 +20,7 @@
 }
 .blueColorThan {
   color: #222 !important;
-  background: rgba(22, 160, 254, 0.2) !important;
+  background: rgba(22, 160, 254, 0.1) !important;
 }
 .yellowColor {
   background: #ffc30d !important;
@@ -28,7 +28,7 @@
 }
 .yellowColorThan {
   color: #222 !important;
-  background: rgba(255, 195, 13, 0.2) !important;
+  background: rgba(255, 195, 13, 0.1) !important;
 }
 .orangeColor {
   background: #ff9040 !important;
@@ -36,7 +36,7 @@
 }
 .orangeColorThan {
   color: #222 !important;
-  background: rgba(255, 144, 64, 0.2) !important;
+  background: rgba(255, 144, 64, 0.1) !important;
 }
 .violetColor {
   background: #ab66ff !important;
@@ -44,7 +44,7 @@
 }
 .violetColorThan {
   color: #222 !important;
-  background: rgba(171, 102, 255, 0.2) !important;
+  background: rgba(171, 102, 255, 0.1) !important;
 }
 .ShecolorColor {
   background: #4d94fe !important;
@@ -52,7 +52,7 @@
 }
 .ShecolorColorThan {
   color: #222 !important;
-  background: rgba(77, 148, 254, 0.2) !important;
+  background: rgba(77, 148, 254, 0.1) !important;
 }
 .wathetColor {
   background: #00cafd !important;
@@ -60,7 +60,7 @@
 }
 .wathetColorThan {
   color: #222 !important;
-  background: rgba(0, 202, 253, 0.2) !important;
+  background: rgba(0, 202, 253, 0.1) !important;
 }
 .BlueCyanColor {
   background: #22d9c6 !important;
@@ -68,7 +68,7 @@
 }
 .BlueCyanColorThan {
   color: #222 !important;
-  background: rgba(34, 217, 198, 0.2) !important;
+  background: rgba(34, 217, 198, 0.1) !important;
 }
 .CyanColor {
   background: #00d96d !important;
@@ -76,7 +76,7 @@
 }
 .CyanColorThan {
   color: #222 !important;
-  background: rgba(0, 217, 109, 0.2) !important;
+  background: rgba(0, 217, 109, 0.1) !important;
 }
 .YellowOrangeColor {
   background: #ffb01e !important;
@@ -84,7 +84,7 @@
 }
 .YellowOrangeColorThan {
   color: #222 !important;
-  background: rgba(255, 176, 30, 0.2) !important;
+  background: rgba(255, 176, 30, 0.1) !important;
 }
 .PinkColor {
   background: #ff867d !important;
@@ -92,7 +92,7 @@
 }
 .PinkColorThan {
   color: #222 !important;
-  background: rgba(255, 134, 125, 0.2) !important;
+  background: rgba(255, 134, 125, 0.1) !important;
 }
 .PinkRedColor {
   background: #fe596a !important;
@@ -100,7 +100,7 @@
 }
 .PinkRedColorThan {
   color: #222 !important;
-  background: rgba(254, 89, 106, 0.2) !important;
+  background: rgba(254, 89, 106, 0.1) !important;
 }
 .violetRedColor {
   background: #fe80cd !important;
@@ -108,7 +108,7 @@
 }
 .violetRedColorThan {
   color: #222 !important;
-  background: rgba(254, 128, 205, 0.2) !important;
+  background: rgba(254, 128, 205, 0.1) !important;
 }
 .violetBlueColor {
   background: #c873ff !important;
@@ -116,7 +116,7 @@
 }
 .violetBlueColorThan {
   color: #222 !important;
-  background: rgba(200, 115, 255, 0.2) !important;
+  background: rgba(200, 115, 255, 0.1) !important;
 }
 .violetShecolorColor {
   background: #8074fe !important;
@@ -124,5 +124,5 @@
 }
 .violetShecolorColorThan {
   color: #222 !important;
-  background: rgba(128, 116, 254, 0.2) !important;
+  background: rgba(128, 116, 254, 0.1) !important;
 }

@@ -6,10 +6,10 @@
         <div class="LiveFullCaledar_son_header">
           <p>{{ dateText.year }}年{{ numberTen(dateText.month+1) }}月</p>
           <button @click="prevClick">
-            <img src="https://img.kaikeba.com/a/45821191101202enpz.png" alt="">
+            <img src="https://img.kaikeba.com/a/13337191101202rury.png" alt="">
           </button>
           <button @click="nextClick">
-            <img src="https://img.kaikeba.com/a/82921191101202xaov.png" alt="">
+            <img src="https://img.kaikeba.com/a/05337191101202jcqb.png" alt="">
           </button>
           <button class="header_today" @click="todayClick">今天</button>
         </div>
@@ -23,18 +23,21 @@
             {{ item.text }}
             <i :class="['ivu-icon', 'ivu-icon-checkmark','checkoutBox_son_choice',checkoutChoiceArrIndexOf(item.text)===-1?'':item.classNameTwo]">
               <!-- <img src="https://img.kaikeba.com/a/84031191101202rbpl.png" alt=""> -->
-              <img src="https://img.kaikeba.com/a/94131191101202ejrz.png" alt="">
+              <img src="https://img.kaikeba.com/a/05137191101202ofzw.png" alt="">
             </i>
           </div>
         </div>
 
+        <!-- :dayNames="['周一','周二','周三','周四','周五','周六','周日']" -->
         <FullCalendar
           id="FullCalendar"
           ref="fullCalendar"
           defaultView="dayGridMonth"
           locale="zh-cn"
+          :firstDay="1"
           height="auto"
           :header="false"
+          :aspectRatio="1.01"
           :weekNumbersWithinDays="true"
           :initialView="initialView"
           :buttonText="buttonText"
@@ -47,34 +50,44 @@
           @eventClick="handleEventClick"
           @changeMonth="changeMonth"
         />
+        <div class="footer"></div>
       </div>
     </div>
     <div
       v-show="tanKuangFlag"
-      id="tanKuang"
+      class="tanKuang_son"
     >
-      <div class="tanKuang_son">
-        <div class="tanKuang_nav">
-          <p>
-            {{ tanKuangDate.month }}.{{ tanKuangDate.day }} {{ tanKuangDate.start }}-{{ tanKuangDate.end }}
-          </p>
-          <span @click="tanKuangShow(false)">X</span>
+      <div class="tanKuang_nav">
+        <p>
+          {{ tanKuangDate.month }}.{{ tanKuangDate.day }} {{ tanKuangDate.start }}-{{ tanKuangDate.end }}
+        </p>
+        <img
+          :src="hoverImg"
+          alt=""
+          @click="tanKuangShow(false)"
+          @mouseover="mouseover"
+          @mouseout="mouseout"
+        />
+      </div>
+      <div class="tankuang_title_text">
+        <p class="tankuang_title">{{ tanKuangDate.titleText }}</p>
+        <p class="tankuang_text">{{ tanKuangDate.text }}</p>
+      </div>
+      <div class="tankuang_img_btn">
+        <div class="img_btn_left">
+          <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1710884549,1871927430&fm=115&gp=0.jpg" alt=""><p> {{ tanKuangDate.teacher }} </p>
         </div>
-        <div class="tankuang_title_text">
-          <p class="tankuang_title">{{ tanKuangDate.titleText }}</p>
-          <p class="tankuang_text">{{ tanKuangDate.text }}</p>
-        </div>
-        <div class="tankuang_img_btn">
-          <div class="img_btn_left">
-            <img src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1710884549,1871927430&fm=115&gp=0.jpg" alt=""><p> {{ tanKuangDate.teacher }} </p>
-          </div>
-          <div class="img_btn_right">
-            看直播
-          </div>
+        <div class="img_btn_right">
+          看直播
         </div>
       </div>
     </div>
-  </div>
+    <!-- <div
+      v-show="tanKuangFlag"
+      id="tanKuang"
+    >
+    </div> -->
+  <!-- </div> -->
   </div>
 </template>
 <script>
@@ -92,6 +105,8 @@ export default {
   },
   data() {
     return {
+      hoverImg: 'https://img.kaikeba.com/a/10637191101202aanw.png',
+      classTitle: '',
       tanKuangDate: {
         year: '',
         month: '',
@@ -183,7 +198,7 @@ export default {
         classNameOne: 'violetShecolorColorThan',
         classNameTwo: 'violetShecolorColor'
       }],
-      checkoutChoiceArr: [],
+      checkoutChoiceArr: ['算法数据', '产品经理年底复盘', 'Web前端高级工程师', '数据分析与增长黑客', '交互设计', '产品思维', '大数据分析'],
       tanKuangFlag: false,
       buttonText: {
         today: '今天',
@@ -222,6 +237,12 @@ export default {
     this.SetDayText()
   },
   methods: {
+    mouseover() {
+      this.hoverImg = 'https://img.kaikeba.com/a/91147191101202wnkd.png'
+    },
+    mouseout() {
+      this.hoverImg = 'https://img.kaikeba.com/a/64147191101202rqje.png'
+    },
     loopAddColorFunction() { // 循环添加颜色
       let count = 0
       console.log(this.checkoutColor.length, 'checkoutColor.length')
@@ -380,19 +401,20 @@ export default {
       this.calendarApi.refetchEvents()
     },
     handleEventClick(info) { // 获取当日信息
-      console.log(info, 'info')
-      console.log(info.event.extendedProps, 'info.event.extendedProps')
-      // console.log(info.el, 'info.el')
-      // info.el.style = ' position: relative;'
-      // this.tankuangTop = '50%'// info.jsEvent.clientY
-      // this.tankuangLeft = '50%'// info.jsEvent.clientX
-      this.tanKuangShow(true)
+      // console.log(info, 'info')
+      // console.log(info.event.title, 'info.event.title')
+      // console.log(info.event.extendedProps, 'info.event.extendedProps')
       let startObj = this.ConversionDate(info.event.start)
       let endObj = null
+      let obj = info.event.extendedProps
+      console.log(this.classTitle, 'this.classTitle')
+      if (info.event.title !== this.classTitle) {
+        this.classTitle = info.event.title
+        this.tanKuangShow(true)
+      }
       if (info.event.end) {
         endObj = this.ConversionDate(info.event.end)
       }
-      let obj = info.event.extendedProps
       this.tanKuangDate = {
         year: startObj.year,
         month: startObj.month + 1,
@@ -404,8 +426,36 @@ export default {
         teacher: obj.teacher
       }
     },
+    SelectedStatus() {
+      let SelectedArr = this.calendarEvents
+      let title = this.classTitle
+      let class_name = ''
+      let class_name_two = ''
+      SelectedArr.forEach((item, index) => {
+        if (item.title === title) {
+          class_name = item.classNameTwo
+          class_name_two = item.className
+          item.classNameTwo = class_name_two
+          item.className = class_name
+        } else {
+          class_name = item.className
+          class_name_two = item.classNameTwo
+          item.classNameTwo = class_name_two
+          item.className = class_name
+          if (item.className.indexOf('Than') === -1) {
+            item.classNameTwo = class_name
+            item.className = class_name_two
+          }
+        }
+      })
+      // console.log(SelectedArr, 'SelectedArr')
+      // console.log(this.calendarEvents, 'calendarEvents')
+      this.calendarEvents = SelectedArr
+    },
     tanKuangShow(flag) {
+      this.SelectedStatus()
       this.tanKuangFlag = flag
+      this.classTitle = this.tanKuangFlag ? this.classTitle : ''
     },
     numberTen(num) {
       return num < 10 ? ('0' + num) : num
@@ -419,7 +469,6 @@ export default {
         minutes: date.getMinutes()
       }
     }
-
   }
 }
 </script>
@@ -455,6 +504,7 @@ font-family: PingFangSC-Medium, PingFang SC;
     background: #fff;
     border-bottom: 0;
     padding: 20px;
+    position: relative;
     .LiveFullCaledar_son_header{
       width: 100%;
       height: 50px;
@@ -478,15 +528,24 @@ font-family: PingFangSC-Medium, PingFang SC;
       button{
         width: 30px;
         height: 30px;
-        background: #EFEFEF;
+        background: #ffffff;
         border-radius: 4px;
         border: 1px solid #EEEEEE;
         // background: linear-gradient(180deg, #FCFCFC 0%, #FFFFFF 100%);
         margin-right: 5px;
         .DisplayFlex(space-around,center);
+        cursor:pointer;
+        img{
+          width: 20px;
+        }
       }
       button:hover{
         background: #FAFAFA;
+        border-radius: 4px;
+        border: 1px solid #EEEEEE;
+      }
+      button:active{
+        background: #EEEEEE;
         border-radius: 4px;
         border: 1px solid #EEEEEE;
       }
@@ -521,11 +580,23 @@ font-family: PingFangSC-Medium, PingFang SC;
           border-radius: 4px 0px 4px 0px;
           background: rgba(204, 204, 204, 1);
           color: #fff;
-        .DisplayFlex(space-around,center);
+          .DisplayFlex(space-around,center);
+          img{
+            width: 7px;
+          }
         }
         .ColorAll();
       }
       .ColorAll();
+    }
+    .footer{
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      position: absolute;
+      bottom: 84px;
+      left: 0;
+      z-index:1;
     }
   }
 }
@@ -533,84 +604,93 @@ font-family: PingFangSC-Medium, PingFang SC;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0,.5);
-  position: fixed;
   top: 0;
   left: 0;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%,-50%);
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 999;
-  .tanKuang_son{
-      width: 330px;
-      height: 164px;
-      background: #FFFFFF;
-      box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.04);
-      border-radius: 4px;
-        padding:15px;
-      .tanKuang_nav{
-        .DisplayFlex(space-between,center);
-        font-size: 16px;
-        font-family: KKBfont;
-        color: #333333;
-        line-height: 15px;
-        span{
-          .Cursor();
-        }
-      }
-      .tankuang_title_text{
-        width: 100%;
-        height: 80px;
-        margin-top: 10px;
-        .tankuang_title{
-          width: 100%;
-          font-size: 16px;
-          font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 500;
-          color: #333333;
-          line-height: 22px;
-        }
-        .tankuang_text{
-          font-size: 12px;
-          font-family: PingFangSC-Regular, PingFang SC;
-          font-weight: 400;
-          color: #333333;
-          line-height: 17px;
-        }
-      }
-      .tankuang_img_btn{
-        width: 100%;
-        height: auto;
-        .DisplayFlex(space-between,center);
-        .img_btn_left{
-          width: 100px;
-          height: auto;
-        .DisplayFlex(start,center);
-          img{
-            width: 20px;
-            border-radius: 50%;
-          }
-          p{
-            margin-left: 10px;
-          }
-        }
-        .img_btn_right{
-          width: 82px;
-          height: 32px;
-          background: #199FFF;
-          line-height: 31px;
-          text-align: center;
-          border-radius: 4px;
-          font-size: 14px;
-          font-family: PingFangSC-Medium, PingFang SC;
-          font-weight: 500;
-          color: #FFFFFF;
-        }
-      }
-  }
 
+}
+.tanKuang_son{
+    width: 330px;
+    height: 168px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+      padding:15px;
+    .tanKuang_nav{
+      .DisplayFlex(space-between,center);
+      font-size: 16px;
+      font-family: KKBfont;
+      color: #333333;
+      line-height: 15px;
+      img{
+        width: 22px;
+        cursor: pointer;
+      }
+      span{
+        .Cursor();
+      }
+    }
+    .tankuang_title_text{
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      .tankuang_title{
+        width: 100%;
+        font-size: 16px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #333333;
+        line-height: 22px;
+      }
+      .tankuang_text{
+        font-size: 12px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #333333;
+        line-height: 17px;
+      }
+    }
+    .tankuang_img_btn{
+      width: 100%;
+      height: auto;
+      .DisplayFlex(space-between,center);
+      .img_btn_left{
+        width: 100px;
+        height: auto;
+      .DisplayFlex(start,center);
+        img{
+          width: 20px;
+          border-radius: 50%;
+        }
+        p{
+          margin-left: 10px;
+        }
+      }
+      .img_btn_right{
+        width: 82px;
+        height: 32px;
+        background: #199FFF;
+        line-height: 31px;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 14px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FFFFFF;
+        cursor: pointer;
+      }
+      .img_btn_right:hover{
+        background: #107ECC;
+      }
+    }
 }
 /deep/.fc{
   *{
@@ -623,6 +703,10 @@ font-family: PingFangSC-Medium, PingFang SC;
   }
   .fc-time{
     display: none;
+  }
+  .fc-more-cell{//还有多少项
+    height: 20px!important;
+    line-height: 20px!important;
   }
   .fc-popover,.fc-more-popover {
     width: 213px!important;
@@ -757,7 +841,7 @@ font-family: PingFangSC-Medium, PingFang SC;
     }
   }
   .fc-row,.fc-week,.fc-widget-content:last-child{
-    // border-bottom:0;
+    // border-bottom-color:#fff;
     // box-sizing:border-box!important;
   }
   .fc-row,.fc-week,.fc-widget-content,.fc-rigid{
@@ -820,7 +904,7 @@ font-family: PingFangSC-Medium, PingFang SC;
           }
         }
         .ColorAll();
-        .hoverColorAll();
+        // .hoverColorAll();
         .deepskyblue{
           border:0!important;
           .Color(#fff);
@@ -836,15 +920,21 @@ font-family: PingFangSC-Medium, PingFang SC;
       }
     }
   }
+  .fc-more-popover{
+    z-index: 999!important;
+  }
   .fc-popover,.fc-more-popover{
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.04)!important;
     .fc-body,.fc-widget-content{
           border:0!important;
+          // z-index: 999!important;
       .fc-event-container{
         .ColorAll();
-        .hoverColorAll();
+        // .hoverColorAll();
+          // z-index: 999!important;
         .fc-content{
         .FontSize(10px);
+          // z-index: 999!important;
         }
       }
     }

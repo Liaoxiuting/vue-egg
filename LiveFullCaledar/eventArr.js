@@ -240,7 +240,7 @@ let eventsArr = [
     className: 'greyColorThan'
   },
   {
-    id: 16,
+    id: 167457567567665464264543,
     title: '产品思维',
     start: '2020-12-29T07:00:00',
     teacher: '福克斯',
@@ -249,7 +249,7 @@ let eventsArr = [
     className: 'greyColorThan'
   },
   {
-    id: 15,
+    id: 1345646464646465,
     title: '产品思维',
     start: '2020-12-29T07:00:00',
     teacher: '福克斯',
@@ -258,22 +258,121 @@ let eventsArr = [
     className: 'greyColorThan'
   },
   {
-    id: 18484,
-    title: '算法与数据',
+    id: 1846456543684,
+    title: '算法数据',
     start: '2020-12-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'PinkColorThan'
+  },
+  {
+    id: 1865643564364643848,
+    title: '算法数据',
+    start: '2020-12-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'PinkRedColorThan'
+  },
+  {
+    id: 19654646456875,
+    title: '产品经理年底复盘',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'CyanColorThan'
+  },
+  {
+    id: 124532543663564,
+    title: '产品经理年底复盘',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'CyanColorThan'
+  },
+  {
+    id: 135345325236758855,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'YellowOrangeColorThan'
+  },
+  {
+    id: 137534523532523875,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'YellowOrangeColorThan'
+  },
+  {
+    id: 137753253253535575,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
     teacher: '福克斯',
     titleText: '产品经理年底复盘与新年flag',
     text: '下周三提测、1月26上线',
     className: 'PinkColorThan'
   },
   {
-    id: 186848,
-    title: '算法与数据',
-    start: '2020-12-29T07:00:00',
+    id: 18434534584,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'PinkColorThan'
+  },
+  {
+    id: 18612353535848,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
     teacher: '福克斯',
     titleText: '产品经理年底复盘与新年flag',
     text: '下周三提测、1月26上线',
     className: 'PinkRedColorThan'
+  },
+  {
+    id: 16487654684,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'PinkRedColorThan'
+  },
+  {
+    id: 1967868923456786,
+    title: 'Web前端高级工程师的',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'violetRedColorThan'
+  },
+  {
+    id: 167865468467,
+    title: '大数据分析',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'violetRedColorThan'
+  },
+  {
+    id: 164567765856868,
+    title: '大数据分析',
+    start: '2021-01-29T07:00:00',
+    teacher: '福克斯',
+    titleText: '产品经理年底复盘与新年flag',
+    text: '下周三提测、1月26上线',
+    className: 'violetBlueColorThan'
   }
 ]
 export default eventsArr
