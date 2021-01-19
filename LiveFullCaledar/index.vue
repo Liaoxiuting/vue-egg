@@ -365,7 +365,8 @@ export default {
     },
     // 给当日 所在周 设置 字体颜色
     SetWeekTextColor() {
-      document.querySelectorAll('.fc-day-header')[new Date().getDay()].style = 'color: #16A0FE!important;'
+      console.log(new Date().getDay(), 'new Date().getDay()')
+      document.querySelectorAll('.fc-day-header')[new Date().getDay() === 0 ? 7 : new Date().getDay() - 1].style = 'color: #16A0FE!important;'
     },
     changeMonth(start, end, current) {
       console.log('changeMonth', start.format(), end.format(), current.format())
@@ -560,6 +561,7 @@ font-family: PingFangSC-Medium, PingFang SC;
       display: flex;
       flex-wrap: wrap;
       // padding: 10px;
+      margin-top: 15px;
       .checkoutBox_son{
         width: 154px;
         margin: 0 5px 5px 0;
@@ -588,6 +590,9 @@ font-family: PingFangSC-Medium, PingFang SC;
         .ColorAll();
       }
       .ColorAll();
+    }
+    #FullCalendar{
+      margin-top: 20px;
     }
     .footer{
       width: 100%;
