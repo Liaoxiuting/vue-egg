@@ -7,7 +7,8 @@ let eventsArr = [
     titleText: '产品经理年底复盘与新年flag',
     text: '下周三提测、1月26上线',
     end: '2021-01-01 16:00:00',
-    className: 'greenColorThan'
+    className: 'greenColorThan',
+    status: 1
   },
   {
     id: 112412,
@@ -16,7 +17,8 @@ let eventsArr = [
     teacher: '福克斯',
     titleText: '产品经理年底复盘与新年flag',
     text: '下周三提测、1月26上线',
-    className: 'greenColorThan'
+    className: 'greenColorThan',
+    status: 0
   },
   {
     id: 112412131,
@@ -26,7 +28,8 @@ let eventsArr = [
     titleText: '产品经理年底复盘与新年flag',
     end: '2021-01-11T16:00:00',
     text: '下周三提测、1月26上线',
-    className: 'blueColorThan'
+    className: 'blueColorThan',
+    status: 2
   },
   // {
   //   id: 11241213123131,
@@ -44,7 +47,8 @@ let eventsArr = [
     teacher: '福克斯',
     titleText: '产品经理年底复盘与新年flag',
     text: '下周三提测、1月26上线',
-    className: 'blueColorThan'
+    className: 'blueColorThan',
+    status: 0
   },
   {
     id: 12345,

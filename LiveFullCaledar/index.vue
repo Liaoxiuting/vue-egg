@@ -27,7 +27,6 @@
             </i>
           </div>
         </div>
-
         <!-- :dayNames="['周一','周二','周三','周四','周五','周六','周日']" -->
         <FullCalendar
           id="FullCalendar"
@@ -97,6 +96,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import eventsArr from './eventArr.js'
+import { getCalendarList } from '@/api/liveCalendar.js'
 let eventsarr = eventsArr
 export default {
   name: 'LiveFullCaledar',
@@ -230,11 +230,13 @@ export default {
     // console.log(new Date().getFullYear(), new Date().getMonth())
     this.SetDateText('today')
     this.loopAddColorFunction()
+    this.CalendarList()
   },
   mounted() {
     this.calendarApi = this.$refs.fullCalendar.getApi()
     this.SetWeekTextColor()
     this.SetDayText()
+    this.liveStatus()
   },
   methods: {
     mouseover() {
@@ -242,6 +244,15 @@ export default {
     },
     mouseout() {
       this.hoverImg = 'https://img.kaikeba.com/a/64147191101202rqje.png'
+    },
+    liveStatus() {
+      this.calendarEvents.forEach((item, index) => {
+        let title = ''
+        if (item.status === 1) {
+          title = item.title
+          item.title = '(直播中)' + title
+        }
+      })
     },
     loopAddColorFunction() { // 循环添加颜色
       let count = 0
@@ -374,8 +385,10 @@ export default {
     eventLimitText(val) { // 还有多少项
       return '还有' + val + '项'
     },
+    // events 数据
     getCalendarEvents(info, successCallback, failureCallback) {
       console.log(info, successCallback, failureCallback, 'info, successCallback, failureCallback')
+      this.liveStatus()
       const events = [
         ...this.calendarEvents
         // {
@@ -427,13 +440,14 @@ export default {
         teacher: obj.teacher
       }
     },
+    // 点击 给相关课程 添换颜色
     SelectedStatus() {
       let SelectedArr = this.calendarEvents
       let title = this.classTitle
       let class_name = ''
       let class_name_two = ''
       SelectedArr.forEach((item, index) => {
-        if (item.title === title) {
+        if (item.title.indexOf(title) !== -1) {
           class_name = item.classNameTwo
           class_name_two = item.className
           item.classNameTwo = class_name_two
@@ -469,6 +483,11 @@ export default {
         hours: date.getHours(),
         minutes: date.getMinutes()
       }
+    },
+    // /calendar/list
+    async CalendarList() {
+      let list = await getCalendarList()
+      console.log(list, 'getCalendarList==>list')
     }
   }
 }
