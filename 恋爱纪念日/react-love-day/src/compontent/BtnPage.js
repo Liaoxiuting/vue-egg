@@ -12,7 +12,6 @@ class BtnPage extends Component {
     }
   }
   componentWillMount(){
-    console.log(this.props,'BtnPage--this')
     let props=this.props
     this.setState({
       pageUp:props.pageUp,
