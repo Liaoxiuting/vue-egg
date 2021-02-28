@@ -1,105 +1,124 @@
-.loveday{
-  width: 100%;
-  height: 100%;
+.loveday {
+    width: 100%;
+    height: 100%;
 }
-.calendar{
-  width: 100%;
-  height: 90vh;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.calendar {
+    width: 100%;
+    height: 90vh;
+    /* background: #fff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.calendar_son{
-  width: 70vw;
-  height: auto;
-  /* border: 1px solid #ccc; */
+
+.calendar_son {
+    width: 70vw;
+    height: auto;
+    /* background: url('../../love.png') no-repeat center;
+    background-size: cover; */
+    /* border: 1px solid #ccc; */
 }
-.calendar_year_month{
-  width: 70vw;
-  height: 7vw;
-  border-bottom: 1px solid #fff;
-  background-color: darksalmon;
-  display: flex;
-  align-items: center;
+
+.calendar_year_month {
+    width: 70vw;
+    height: 7vw;
+    border-bottom: 1px solid #fff;
+    background-color: darksalmon;
+    display: flex;
+    align-items: center;
 }
-.calendar_year_month>span{
-  height: 7vw;
-  line-height: 7vw;
-  cursor: pointer;
+
+.calendar_year_month>span {
+    height: 7vw;
+    line-height: 7vw;
+    cursor: pointer;
 }
-.calendar_year_month>span:nth-child(1){
-  height: 7vw;
-  line-height: 7vw;
-  cursor: pointer;
-  margin-left: 2vw;
+
+.calendar_year_month>span:nth-child(1) {
+    height: 7vw;
+    line-height: 7vw;
+    cursor: pointer;
+    margin-left: 2vw;
 }
-.calendar_year_month>span>b{
-  font-size: 5vw;
+
+.calendar_year_month>span>b {
+    font-size: 5vw;
 }
-.calendar_huan{
-  width: 70vw;
-  height: 7vw;
-  border-bottom: 1px solid #fff;
-  /* background-color: darksalmon; */
-  background-color: yellowgreen;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+
+.calendar_huan {
+    width: 70vw;
+    height: 7vw;
+    border-bottom: 1px solid #fff;
+    background-color: darksalmon;
+    background-color: yellowgreen;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
-.calendar_huan>span{
-  cursor: pointer;
+
+.calendar_huan>span {
+    cursor: pointer;
 }
-.calendar_nav{
-  width: 70vw;
-  height: 7vw;
-  /* border-bottom: 1px solid #ccc; */
-  display: flex;
-  align-items: center;
-  border-bottom: .1vw solid #fff;
+
+.calendar_nav {
+    width: 70vw;
+    height: 7vw;
+    /* border-bottom: 1px solid #ccc; */
+    display: flex;
+    align-items: center;
+    border-bottom: .1vw solid #fff;
 }
-.calendar_nav>p{
-  text-align: center;
-  flex: 1;
-  height: 7vw;
-  line-height: 7vw;
-  background-color: rgb(188, 243, 225);
+
+.calendar_nav>p {
+    text-align: center;
+    flex: 1;
+    height: 7vw;
+    line-height: 7vw;
+    background-color: rgb(188, 243, 225);
 }
-.calendar_day{
-  width: 70vw;
-  height: auto;
-  /* display: flex; */
-  /* flex-shrink: 5; */
-  /* flex-flow: 5; */
+
+.calendar_day {
+    width: 70vw;
+    height: auto;
+    /* display: flex; */
+    /* flex-shrink: 5; */
+    /* flex-flow: 5; */
 }
-.calendar_day_son{
-  /* flex: 1; */
-  width: 10vw;
-  height: 7vw;
-  text-align: center;
-  line-height: 7vw;
-  float: left;
-  cursor: pointer;
-  position: relative;
-  border-bottom: .1vw solid #fff;
+
+.calendar_day_son {
+    /* flex: 1; */
+    width: 10vw;
+    height: 7vw;
+    line-height: 7vw;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+    position: relative;
+    border-bottom: .1vw solid #fff;
 }
-.calendar_day_son>span{
-  width: 50%;
-  line-height: 2vw;
-  height: 2vw;
-  background: #fff;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%,0);
-  font-size: 12px;
+
+.calendar_day_son>span {
+    width: 50%;
+    line-height: 2vw;
+    height: 2vw;
+    /* background: deepskyblue; */
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    font-size: 12px;
 }
-.up_month{
-  background: rgb(247, 244, 202);
+
+.up_month {
+    background: rgb(247, 244, 202);
 }
-.same_month{
-  background: rgb(245, 198, 223);
+
+.same_month {
+    background: rgb(245, 198, 223);
 }
-.down_month{
-  background: rgb(247, 244, 202);
+
+.down_month {
+    background: rgb(247, 244, 202);
 }

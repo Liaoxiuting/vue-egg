@@ -151,7 +151,7 @@ export default {
       width: auto;
       height: 90vh;
       display: flex;
-      transition: left 1s linear;
+      transition: left .5s linear;
     }
   }
   .CarouselComponent_foot{

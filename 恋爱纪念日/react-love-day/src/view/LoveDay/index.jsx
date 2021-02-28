@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BtnPage from '../../compontent/BtnPage.js'
+// import love from '../../love.png';
 import {hundredDay} from '../../utlis/DateFormat.js'
 import './index.css'
 export default class componentName extends Component {
@@ -18,9 +19,22 @@ export default class componentName extends Component {
   componentWillMount(){
     this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
   }
+  
+  shouldComponentUpdate(nextProps, nextState) {
+    // if (this.props.color !== nextProps.color) {
+    //   return true;
+    // }
+    if (this.state.Year !== nextState.Year||this.state.Month !== nextState.Month||this.state.Day !== nextState.Day) {
+      this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
+      return true;
+    }
+    return false;
+  }
+
   render() {
     return (
       <div className="loveday">
+      {/* <img src={love} /> */}
         <div className="calendar">
           <div className="calendar_son">
             <div className="calendar_year_month">
@@ -58,7 +72,7 @@ export default class componentName extends Component {
                   return <div className={item.classNames} key={item.id} onClick={this.clickToDay.bind(this,item)}>{item.day}
                     {item.anniversaryFlag&&
                     <span>
-                      {item.anniversary}天
+                      {item.anniversary}
                     </span>}
                   </div>
                 })
@@ -68,7 +82,7 @@ export default class componentName extends Component {
                   return <div className={item.classNames} key={item.id} onClick={this.clickToDay.bind(this,item)}>{item.day}
                     {item.anniversaryFlag&&
                     <span>
-                      {item.anniversary}天
+                      {item.anniversary}
                     </span>}
                   </div>
                 })
@@ -78,7 +92,7 @@ export default class componentName extends Component {
                   return <div className={item.classNames} key={item.id} onClick={this.clickToDay.bind(this,item)}>{item.day}
                     {item.anniversaryFlag&&
                     <span>
-                      {item.anniversary}天
+                      {item.anniversary}
                     </span>}
                   </div>
                 })
@@ -100,42 +114,34 @@ export default class componentName extends Component {
   }
   // 生命周期  在render之后调用   只能在浏览器端被调用，在服务器端使用react的时候不会被调用
   componentDidMount(){
+
   }
+
 
   //操作方法====⬇️
 
   goToDay(){
-    let _this=this
     this.setState({
       Year: new Date().getFullYear(),//当前年份
       Month: new Date().getMonth(),//当前月份
       Day: new Date().getDate(),//当前日
-    },()=>{
-      _this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
     })
   }
   upYear(){//上一年
-    let _this=this
     let year=this.state.Year
       year--
     this.setState({
       Year:year,
-    },()=>{
-      _this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
     })
   }
   downYear(){//下一年
-    let _this=this
     let year=this.state.Year
       year++
     this.setState({
       Year:year,
-    },()=>{
-      _this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
     })
   }
   upMonth(){//上一月
-    let _this=this
     let year=this.state.Year
     if (this.state.Month-1<0) {
       year--
@@ -144,12 +150,9 @@ export default class componentName extends Component {
     this.setState({
       Year:year,
       Month:month
-    },()=>{
-      _this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
     })
   }
   downMonth(){//下一月
-    let _this=this
     let year=this.state.Year
     if (this.state.Month+1>11) {
       year++
@@ -158,8 +161,6 @@ export default class componentName extends Component {
     this.setState({
       Year:year,
       Month:month
-    },()=>{
-      _this.daysInMonthFn()//  判断闰年 2月份是28天还是29天
     })
   }
 
@@ -227,19 +228,23 @@ export default class componentName extends Component {
     return {days,dayArr}
    }
    DownMonthDays(){//当前需要展示的 下月哪几天数
-    let {Year,Month,daysInMonth} = this.state
+    let {Year,Month} = this.state
     let targetDay = new Date(Year, this.monthCount(Month+1), 1).getDay();
+    console.log(targetDay,'targetDay')
     let dayArr=[]
-    for (let index = 0; index < 7-targetDay; index++) {
-      let date=Year+'-'+(this.monthCount(Month+1)+1)+'-'+(index+1)
-      let ToDay=this.anniversaryFn(date)
-      dayArr.push({
-        day:index+1,
-        id:this.randomID(Year,this.monthCount(Month+1),index),
-        classNames:'down_month calendar_day_son',
-        date,
-        ...ToDay
-      })
+    let dayLength=7-targetDay
+    if (dayLength!==7) {
+      for (let index = 0; index < dayLength; index++) {
+        let date=Year+'-'+(this.monthCount(Month+1)+1)+'-'+(index+1)
+        let ToDay=this.anniversaryFn(date)
+        dayArr.push({
+          day:index+1,
+          id:this.randomID(Year,this.monthCount(Month+1),index),
+          classNames:'down_month calendar_day_son',
+          date,
+          ...ToDay
+        })
+      }
     }
     return dayArr
    }
